@@ -1,0 +1,122 @@
+﻿<Window x:Class="WPF_ExpensesTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_ExpensesTracker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Categories">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBox x:Name="textBoxCategoryName" Margin="5" Width="150"/>
+                        <Button x:Name="buttonAddCategory" Margin="5" Content="Add Category"/>
+                        <Button x:Name="buttonDeleteCategories" Margin="5" Content="Delete Selected Categories"/>
+                    </StackPanel>
+                    <DataGrid x:Name="dataGridCategories"
+                              AutoGenerateColumns="False"
+                              Grid.Row="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Id}"
+                                                Header="Id"
+                                                IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding Name}"
+                                                Header="Name"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="New Expenses">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Width="400" Orientation="Horizontal">
+                        <TextBlock Text="Date: "
+                                   Width="150"
+                                   Margin="5" />
+                        <DatePicker x:Name="datePickerExpanseDate" 
+                                    IsTodayHighlighted="True"
+                                    Width="240"
+                                    Margin="5" />
+                    </StackPanel>
+                    <StackPanel Width="400" Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Text="Category: "
+                                   Width="150"
+                                   Margin="5" />
+                        <ComboBox x:Name="comboBoxExpenseCategory"
+                                  Width="240"
+                                  Margin="5"
+                                  DisplayMemberPath="Name" />
+                    </StackPanel>
+                    <StackPanel Width="400" Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock Text="Amount:"
+                                   Width="150"
+                                   Margin="5" />
+                        <TextBox x:Name="textBoxExpenseAmount"
+                                 Width="240"
+                                 Margin="5" />
+                    </StackPanel>
+                    <TextBox x:Name="textboxExpenseDescription"
+                             Width="400"
+                             Margin="5"
+                             HorizontalAlignment="Center"
+                             Grid.Row="3"/>
+                    <Button x:Name="buttonAddExpense"
+                            Content="Add New Expense"
+                            Margin="5"
+                            HorizontalAlignment="Center"
+                            Grid.Row="4" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Expenses Table">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel></StackPanel>
+                    <DataGrid x:Name="dataGridExpenses"
+                              Grid.Row="1"
+                              Margin="5"
+                              Width="600"
+                              AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn 
+                                Binding="{Binding Id}"
+                                Header="Id"
+                                Width="40"/>
+                            <DataGridTextColumn 
+                                Binding="{Binding Date}"
+                                Header="Date"
+                                Width="100"/>
+                            <DataGridTextColumn 
+                                Binding="{Binding Category.Name}"
+                                Header="Category"
+                                Width="100"/>
+                            <DataGridTextColumn 
+                                Binding="{Binding Amount}"
+                                Header="Amount"
+                                Width="100"/>
+                            <DataGridTextColumn 
+                                 Binding="{Binding Description}"
+                                 Header="Description"
+                                 Width="200"/>
+                        </DataGrid.Columns>
+                    </DataGrid>         
+              
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
